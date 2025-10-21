@@ -1,0 +1,158 @@
+/* Variabel Global & Reset */
+:root {
+    --dark-bg: #0a0a14;
+    --neon-blue: #00ffff;
+    --light-gray: #aaaaaa;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-gray);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Three.js Canvas Styling */
+#webgl-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Posisikan di belakang konten */
+}
+
+/* Konten Utama */
+#content {
+    position: relative;
+    z-index: 1;
+}
+
+.section {
+    min-height: 100vh;
+    padding: 100px 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Intro Section */
+#intro h1 {
+    font-size: 8rem;
+    color: white;
+    text-shadow: 0 0 20px var(--neon-blue);
+    margin-bottom: 20px;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: var(--neon-blue);
+    font-weight: 300;
+}
+
+/* Details Section */
+#details {
+    align-items: flex-start; /* Geser ke kiri untuk deskripsi */
+    padding-left: 15vw;
+    min-height: 500vh; /* Agar ada ruang scroll yang cukup */
+    position: relative;
+}
+
+.description-point {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 0; /* Mulai tersembunyi */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(30px);
+    max-width: 500px;
+    text-align: left;
+}
+
+.description-point.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.description-point h2, .description-point h3 {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    margin-bottom: 10px;
+}
+
+.description-point p {
+    font-size: 1.1rem;
+}
+
+/* Dashboard Section */
+#dashboard-section {
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgba(10, 10, 20, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+}
+
+#dashboard {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.metric {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+}
+
+.metric h4 {
+    color: var(--light-gray);
+    margin-bottom: 15px;
+}
+
+.neon-blue {
+    color: var(--neon-blue);
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.graph-placeholder {
+    height: 80px;
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-top: 15px;
+    /* Dummy wave/line effect */
+    background-image: linear-gradient(90deg, transparent 0%, var(--neon-blue) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: pulse-graph 4s infinite linear;
+}
+
+@keyframes pulse-graph {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+/* Footer Section */
+#footer {
+    min-height: 30vh;
+    padding: 50px 0;
+    border-top: 1px solid rgba(0, 255, 255, 0.1);
+}
