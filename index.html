@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuraX Quantum AI Chip</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <h1>🚀 NeuraX Quantum AI Chip</h1>
+    <p>Edge Computing Power</p>
+  </header>
+
+  <section class="scene-container">
+    <canvas id="chipCanvas"></canvas>
+  </section>
+
+  <section class="features">
+    <h2>Fitur Utama</h2>
+    <ul>
+      <li><b>Tampilan 3D Interaktif:</b> Menampilkan model chip AI menggunakan Three.js.</li>
+      <li><b>Scroll-Driven Animation:</b> Chip berputar dan bergerak seiring dengan guliran halaman.</li>
+      <li><b>Deskripsi Bertahap:</b> Informasi produk muncul dengan animasi smooth.</li>
+      <li><b>Dashboard Performa:</b> Tampilan dummy data suhu, kecepatan, efisiensi daya.</li>
+      <li><b>Desain Futuristik:</b> Kombinasi warna gelap dan efek neon biru.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 NeuraX Quantum | Made with 💙 by Lanzz-del</p>
+  </footer>
+
+  <script>
+    // === SCENE SETUP ===
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('chipCanvas'), alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    // === LIGHTING ===
+    const ambientLight = new THREE.AmbientLight(0x00ffff, 1);
+    const pointLight = new THREE.PointLight(0x00ffff, 2);
+    pointLight.position.set(5, 5, 5);
+    scene.add(ambientLight, pointLight);
+
+    // === OBJECT (Chip Sederhana) ===
+    const geometry = new THREE.BoxGeometry(2, 0.2, 2);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0x001f3f,
+      emissive: 0x00ffff,
+      emissiveIntensity: 0.5,
+      metalness: 0.9,
+      roughness: 0.3
+    });
+    const chip = new THREE.Mesh(geometry, material);
+    scene.add(chip);
+
+    camera.position.z = 5;
+
+    // === ANIMATION ===
+    function animate() {
+      requestAnimationFrame(animate);
+      chip.rotation.x += 0.005;
+      chip.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // === SCROLL EFFECT ===
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      chip.rotation.x = scrollY * 0.002;
+      chip.rotation.y = scrollY * 0.004;
+    });
+
+    // === RESPONSIVE ===
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+  </html>
